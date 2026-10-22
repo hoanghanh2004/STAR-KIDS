@@ -1,0 +1,207 @@
+/* ==========================================================================
+   NGÔI SAO NHÍ VIỆT NAM 2026 — STARKIDS VIETNAM 2026
+   Cinematic Stylesheet: Stage Spotlights & Controlled Motion System
+   Performance: Hardware-Accelerated (transform & opacity only), 60 FPS
+   Accessibility: Strict prefers-reduced-motion overrides
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VOLUMETRIC STAGE SPOTLIGHTS & AMBIENT GLOW
+   -------------------------------------------------------------------------- */
+.stage-spotlight-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Chùm đèn chiếu đỉnh sân khấu rọi xuống góc trái (Cyan Laser Accent) */
+.spotlight-beam-left {
+  position: absolute;
+  top: -120px;
+  left: 5%;
+  width: 520px;
+  height: 750px;
+  background: radial-gradient(
+    ellipse at top,
+    rgba(0, 242, 254, 0.18) 0%,
+    rgba(121, 40, 202, 0.1) 40%,
+    transparent 70%
+  );
+  filter: blur(80px);
+  transform: rotate(-15deg);
+  animation: spotlightSwayLeft 12s ease-in-out infinite alternate;
+}
+
+/* Chùm đèn chiếu đỉnh sân khấu rọi xuống góc phải (Tím điện quang & Vàng kim) */
+.spotlight-beam-right {
+  position: absolute;
+  top: -100px;
+  right: 5%;
+  width: 550px;
+  height: 780px;
+  background: radial-gradient(
+    ellipse at top,
+    rgba(121, 40, 202, 0.16) 0%,
+    rgba(255, 215, 0, 0.1) 45%,
+    transparent 75%
+  );
+  filter: blur(85px);
+  transform: rotate(18deg);
+  animation: spotlightSwayRight 14s ease-in-out infinite alternate;
+}
+
+/* Quầng sáng trung tâm hội tụ (Center Spotlight Convergence) */
+.spotlight-center-glow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -15%);
+  width: 650px;
+  height: 550px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.08) 0%,
+    rgba(0, 242, 254, 0.04) 50%,
+    transparent 70%
+  );
+  filter: blur(95px);
+  animation: stagePulse 9s ease-in-out infinite alternate;
+}
+
+/* --------------------------------------------------------------------------
+   2. KEYFRAME ANIMATIONS (CONTROLLED & PURPOSEFUL)
+   -------------------------------------------------------------------------- */
+@keyframes spotlightSwayLeft {
+  0% {
+    transform: rotate(-18deg) translate(0, 0) scale(1);
+  }
+  50% {
+    transform: rotate(-10deg) translate(15px, 10px) scale(1.04);
+  }
+  100% {
+    transform: rotate(-15deg) translate(-8px, 8px) scale(0.98);
+  }
+}
+
+@keyframes spotlightSwayRight {
+  0% {
+    transform: rotate(15deg) translate(0, 0) scale(1);
+  }
+  50% {
+    transform: rotate(20deg) translate(-15px, 15px) scale(1.05);
+  }
+  100% {
+    transform: rotate(18deg) translate(10px, 5px) scale(0.96);
+  }
+}
+
+@keyframes stagePulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -15%) scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translate(-50%, -15%) scale(1.06);
+  }
+}
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes lightSweep {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  25%, 100% {
+    transform: translateX(250%) skewX(-25deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. ANIMATION UTILITY CLASSES
+   -------------------------------------------------------------------------- */
+.anim-twinkle {
+  animation: starTwinkle 3.2s ease-in-out infinite;
+}
+
+/* Ánh quét sáng định kỳ cho nút CTA */
+.has-light-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.has-light-sweep::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  animation: lightSweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. SCROLL REVEAL (INTERSECTION OBSERVER SYSTEM)
+   -------------------------------------------------------------------------- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-1 { transition-delay: 0.06s; }
+.stagger-2 { transition-delay: 0.12s; }
+.stagger-3 { transition-delay: 0.18s; }
+.stagger-4 { transition-delay: 0.24s; }
+
+/* --------------------------------------------------------------------------
+   5. ACCESSIBILITY OVERRIDES (prefers-reduced-motion)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .spotlight-beam-left,
+  .spotlight-beam-right,
+  .spotlight-center-glow,
+  .has-light-sweep::after {
+    animation: none !important;
+    transform: none !important;
+  }
+}

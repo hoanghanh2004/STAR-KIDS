@@ -1,0 +1,97 @@
+# ==============================================================================
+# .gitignore - NGÔI SAO NHÍ VIỆT NAM 2026 (STARKIDS VIETNAM 2026)
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. HỆ ĐIỀU HÀNH & TỆP RÁC HỆ THỐNG (OS SYSTEM FILES)
+# ------------------------------------------------------------------------------
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.stackdump
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+.directory
+
+# ------------------------------------------------------------------------------
+# 2. CẤU HÌNH TRÌNH SOẠN THẢO & WORKSPACE (IDE & EDITORS)
+# ------------------------------------------------------------------------------
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains (WebStorm, IntelliJ, PhpStorm...)
+.idea/
+*.iws
+*.iml
+
+# Sublime Text / Atom / Vim / Notepad++
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+*.bak
+
+# ------------------------------------------------------------------------------
+# 3. QUẢN LÝ GÓI, LOGS & TỆP TẠM (LOGS, CACHE & DEPENDENCIES)
+# ------------------------------------------------------------------------------
+# Node & Package Managers (Dự phòng nếu sau này cài tool/vite/npm)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-debug.log*
+
+# Build outputs & Cache
+dist/
+build/
+out/
+.cache/
+.parcel-cache/
+*.tmp
+*.temp
+*.log
+
+# ------------------------------------------------------------------------------
+# 4. BẢO MẬT & BIẾN MÔI TRƯỜNG (ENVIRONMENT & SECRETS)
+# ------------------------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+
+# ------------------------------------------------------------------------------
+# 5. TÀI LIỆU THAM KHẢO & ẢNH GỐC NGUYÊN BẢN (REFERENCE & RAW ASSETS)
+# ------------------------------------------------------------------------------
+# Thư mục tài liệu tham khảo ban đầu ở thư mục gốc (~13MB: screen.png 7.6MB, file PDF 4.9MB, code mẫu)
+# (Website production không gọi đến thư mục này)
+/tham khao/
+
+# Thư mục ảnh thô ban đầu ở thư mục gốc (~5.6MB: ảnh tải Zalo gốc, website đã chuẩn hóa vào /assets/images/)
+/images/
+
+# Ảnh chụp màn hình nháp trung gian dùng để cắt logo/giám khảo
+/assets/images/logo bao/
+/assets/images/giam khao/
